@@ -16,20 +16,12 @@ public class Db {
         Connector connector = new Connector();
         try (Session session = connector.getSession()){
 
-            Magic magic = new Magic("Magic arrow", 10, 0,0);
-            session.beginTransaction();
-            session.save(magic);
-            magic = new Magic("Lightning",25,0,0); session.save(magic);
-            magic = new Magic("Stone Skin",0,0,6); session.save(magic);
-            magic = new Magic("Blood lust",0,6,0); session.save(magic);
-            magic = new Magic("Bane",0,-3,0); session.save(magic);
-            magic = new Magic("Healing",-30,0,0); session.save(magic); session.getTransaction().commit();
-            session.close();
-////            Delete all from table =============================================
-//            Transaction t = session.beginTransaction();
-//            List<Magic> magics = session.createQuery("from Magic ", Magic.class).getResultList();
-//            magics.forEach(session::delete);
-//            t.commit();
+
+//            Delete all from table =============================================
+            Transaction t = session.beginTransaction();
+            List<Magic> magics = session.createQuery("from Magic ", Magic.class).getResultList();
+            magics.forEach(session::delete);
+            t.commit();
 
 
 //    //Update ========================================================
